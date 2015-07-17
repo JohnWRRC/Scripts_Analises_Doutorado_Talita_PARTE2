@@ -1,0 +1,41 @@
+cd "E:\data_2015\___john\001.Thalita_p2\centroid_FINAL\split_2014"
+list=*.shp
+
+for i in $list
+do
+out=`echo $i|awk '{gsub(".shp","_shp");print}'`
+v.in.ogr dsn=$i out=$out --o
+done
+
+list_2014=`g.mlist vect pattern="*2014*"`
+cd "E:\data_2015\___john\001.Thalita_p2\__Resultados_metricas_parte2\pnt_saidas_grass_What_2014"
+
+for i in $list_2014
+do
+v.out.ogr in=$i dsn=$i"_vwhat.shp" type=point
+done
+
+
+###########################################################################################################
+
+
+cd "E:\data_2015\___john\001.Thalita_p2\centroid_FINAL\split_outros"
+list=*.shp
+
+for i in $list
+do
+out=`echo $i|awk '{gsub(".shp","_shp");print}'`
+v.in.ogr dsn=$i out=$out --o
+done
+
+
+
+
+list_2014=`g.mlist vect pattern="**"`
+cd "E:\data_2015\___john\001.Thalita_p2\__Resultados_metricas_parte2\pnt_saidas_grass_What_Outros"
+
+for i in $list_2014
+do
+v.out.ogr in=$i dsn=$i"_vwhat.shp" type=point
+done
+
